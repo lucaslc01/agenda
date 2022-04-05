@@ -1,1 +1,39 @@
-<p>contato works!</p>
+Detalhes do contato
+<input type="button" value="exibir contatos" (click)="mostrar()">
+<table>
+  <thead>
+    <tr>
+      <td>Nome</td>
+      <td>Sobrenome</td>
+      <td>Empresa</td>
+      <td>Cargo</td>
+      <td>Apelido</td>
+      <td>Aniversário</td>
+      <td>Observação</td>
+      <td>Telefone</td>
+      <td>Endereço</td>
+      <td>Email</td>
+    </tr>
+  </thead>
+
+  <tr [hidden]="esconder" *ngFor="let contato of getContatos()">
+    <td [ngClass]="{corLetra:true}">{{contato.nome}}</td>
+    <td>{{contato.sobrenome}}</td>
+    <td>{{contato.empresa}}</td>
+    <td>{{contato.cargo}}</td>
+    <td>{{contato.apelido}}</td>
+    <td>{{contato.aniversario}}</td>
+    <td>{{contato.observacao}}</td>
+    <td>{{contato.telefone}}</td>
+    <td>{{contato.endereco}}</td>
+    <td>{{contato.email}}</td>
+  </tr>
+</table>
+
+<!--contatos usando switch-->
+<!--<div [ngSwitchCase]="escolha">
+  <div *ngSwitchCase="a">cotnatos letra a</div>
+</div>-->
+
+
+

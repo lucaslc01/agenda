@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { contato } from './informacoes';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-contato',
@@ -9,70 +11,48 @@ export class ContatoComponent implements OnInit {
 
   //listar, criar, editar e excluir
 
-  nome:string;
-  sobrenome: string;
-  empresa: string;
-  cargo: string;
-  apelido: string;
-  aniversario: number;
-  observacao: string;
-  telefone: number; //transformar em vetor
-  endereco: string;
-  email: string; //transformar em vetor
+  contatos:contato[];
+  esconder:boolean;
 
   constructor() {
 
-    this.nome = "lucas";
-    this.sobrenome = "reis";
-    this.empresa = "cefet";
-    this.cargo = "estudante";
-    this.apelido = "lolo";
-    this.aniversario = 26011995;
-    this.observacao = "gosta de cafe";
-    this.telefone = 3333333333;
-    this.endereco = "ruabairrocidade";
-    this.email = "aaaa@email.com";
+    this.esconder=true;
+
+    this.contatos = [
+      {
+        nome: "lucas",
+        sobrenome : "reis",
+        empresa : "cefet",
+        cargo : "estudante",
+        apelido : "lolo",
+        aniversario : 26011995,
+        observacao : "gosta de cafe",
+        telefone : [3333333333,4444556671],
+        endereco : "ruabairrocidade",
+        email : ["aaaa@email.com","bbbb@email.com"]
+      },
+      {
+        nome : "pedro",
+        sobrenome : "cardoso",
+        empresa : "cafca",
+        cargo : "gerente",
+        apelido : "pepe",
+        aniversario : 11072002,
+        observacao : "trabalhador",
+        telefone : [1010101010,9544783215],
+        endereco : "cidadebairro-rua",
+        email : ["asdaw@email.com","sade@email.com"]
+      }
+    ];
 
   }
 
-  public getNome():string{
-    return this.nome;
+  public getContatos(){
+    return this.contatos;
   }
 
-  public getSobrenome():string{
-    return this.sobrenome;
-  }
-
-  public getEmpresa():string{
-    return this.empresa;
-  }
-
-  public getCargo():string{
-    return this.cargo;
-  }
-
-  public getApelido():string{
-    return this.apelido;
-  }
-
-  public getAniversario():number{
-    return this.aniversario;
-  }
-
-  public getObservacao():string{
-    return this.observacao;
-  }
-
-  public getTelefone():number{
-    return this.telefone;
-  }
-
-  public getEndereco():string{
-    return this.endereco;
-  }
-
-  public getEmail():string{
-    return this.email;
+  public mostrar(){
+    this.esconder=!this.esconder;
   }
 
   ngOnInit(): void {
