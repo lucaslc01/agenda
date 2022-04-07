@@ -31,7 +31,7 @@ router.get("/buscaContato/:nome/:sobrenome",(req,res)=>{
   })
 })
 
-//salva contato com telefone (preencher o telefone é obrigatório)
+//salva contato com telefone e email (preencher o telefone e email é obrigatório)
 router.post("/inserirContato",(req,res)=>{
   var nome = req.body.nome;
   var sobrenome = req.body.sobrenome;
@@ -69,5 +69,166 @@ router.post("/inserirContato",(req,res)=>{
 
 })
 
+router.post("/adicionarTelefone",(req,res)=>{
+  var nome = req.body.nome;
+  var sobrenome = req.body.sobrenome;
+  var telefone = req.body.telefone;
+
+  connection.query("insert into telefones values ('"+nome+"','"+sobrenome+"',"+telefone+")",
+  (err,result)=>{
+    if(err){
+      console.error("Error while adding new telefone");
+    }else{
+      res.send({insert:"success adding telefone"});
+    }
+  })
+
+})
+
+router.post("/adicionarEmail",(req,res)=>{
+  var nome = req.body.nome;
+  var sobrenome = req.body.sobrenome;
+  var email = req.body.email;
+
+  connection.query("insert into emails values ('"+nome+"','"+sobrenome+"','"+email+"')",
+  (err,result)=>{
+    if(err){
+      console.error("Error while adding new email");
+    }else{
+      res.send({insert:"success adding email"});
+    }
+  })
+
+})
+
+// todos os puts alteram dados
+router.put("/alterarEmpresa",(req,res)=>{
+
+  var nome = req.body.nome;
+  var sobrenome = req.body.sobrenome;
+  var empresa = req.body.empresa;
+
+  connection.query("update contato set empresa='"+empresa+"' where nome='"+nome+"' and sobrenome='"+sobrenome+"'",
+    (err,result)=>{
+    if(err){
+      console.error("Error while updating empresa");
+    }else{
+      res.send({update:"success"});
+    }
+  })
+})
+
+router.put("/alterarCargo",(req,res)=>{
+
+  var nome = req.body.nome;
+  var sobrenome = req.body.sobrenome;
+  var cargo = req.body.cargo;
+
+  connection.query("update contato set cargo='"+cargo+"' where nome='"+nome+"' and sobrenome='"+sobrenome+"'",
+    (err,result)=>{
+    if(err){
+      console.error("Error while updating cargo");
+    }else{
+      res.send({update:"success"});
+    }
+  })
+})
+
+router.put("/alterarApelido",(req,res)=>{
+
+  var nome = req.body.nome;
+  var sobrenome = req.body.sobrenome;
+  var apelido = req.body.apelido;
+
+  connection.query("update contato set apelido='"+apelido+"' where nome='"+nome+"' and sobrenome='"+sobrenome+"'",
+    (err,result)=>{
+    if(err){
+      console.error("Error while updating apelido");
+    }else{
+      res.send({update:"success"});
+    }
+  })
+})
+
+router.put("/alterarAniversario",(req,res)=>{
+
+  var nome = req.body.nome;
+  var sobrenome = req.body.sobrenome;
+  var aniversario = req.body.aniversario;
+
+  connection.query("update contato set aniversario="+aniversario+" where nome='"+nome+"' and sobrenome='"+sobrenome+"'",
+    (err,result)=>{
+    if(err){
+      console.error("Error while updating aniversario");
+    }else{
+      res.send({update:"success"});
+    }
+  })
+})
+
+router.put("/alterarObservacao",(req,res)=>{
+
+  var nome = req.body.nome;
+  var sobrenome = req.body.sobrenome;
+  var observacao = req.body.observacao;
+
+  connection.query("update contato set observacao='"+observacao+"' where nome='"+nome+"' and sobrenome='"+sobrenome+"'",
+    (err,result)=>{
+    if(err){
+      console.error("Error while updating observacao");
+    }else{
+      res.send({update:"success"});
+    }
+  })
+})
+
+router.put("/alterarEndereco",(req,res)=>{
+
+  var nome = req.body.nome;
+  var sobrenome = req.body.sobrenome;
+  var endereco = req.body.endereco;
+
+  connection.query("update contato set endereco='"+endereco+"' where nome='"+nome+"' and sobrenome='"+sobrenome+"'",
+    (err,result)=>{
+    if(err){
+      console.error("Error while updating endereco");
+    }else{
+      res.send({update:"success"});
+    }
+  })
+})
+
+router.put("/alterarTelefone",(req,res)=>{
+
+  var nome = req.body.nome;
+  var sobrenome = req.body.sobrenome;
+  var telefone = req.body.telefone;
+  var email = req.body.email;
+
+  connection.query("update telefones set telefone="+telefone+" where nome='"+nome+"' and sobrenome='"+sobrenome+"'",
+    (err,result)=>{
+    if(err){
+      console.error("Error while updating telefone");
+    }else{
+      res.send({update:"success"});
+    }
+  })
+})
+
+router.put("/alterarEmail",(req,res)=>{
+
+  var nome = req.body.nome;
+  var sobrenome = req.body.sobrenome;
+  var email = req.body.email;
+
+  connection.query("update emails set email='"+email+"' where nome='"+nome+"' and sobrenome='"+sobrenome+"'",
+    (err,result)=>{
+    if(err){
+      console.error("Error while updating email");
+    }else{
+      res.send({update:"success"});
+    }
+  })
+})
 
 module.exports = router;
