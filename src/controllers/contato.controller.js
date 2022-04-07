@@ -231,4 +231,32 @@ router.put("/alterarEmail",(req,res)=>{
   })
 })
 
+//delete para excluir
+router.delete("/excluirContato/:nome/:sobrenome",(req,res)=>{
+
+  connection.query("delete from emails where nome='"+req.params.nome+"' and sobrenome='"+req.params.sobrenome+"'",
+    (err,records,fields)=>{
+    if(err){
+      console.error("Error while deleting email");
+    }
+  })
+
+  connection.query("delete from telefones where nome='"+req.params.nome+"' and sobrenome='"+req.params.sobrenome+"'",
+    (err,records,fields)=>{
+    if(err){
+      console.error("Error while deleting telefone");
+    }
+  })
+
+  connection.query("delete from contato where nome='"+req.params.nome+"' and sobrenome='"+req.params.sobrenome+"'",
+    (err,records,fields)=>{
+    if(err){
+      console.error("Error while deleting contato");
+    }else{
+      res.send({delete:"delete success"});
+    }
+  })
+
+})
+
 module.exports = router;
