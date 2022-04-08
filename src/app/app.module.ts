@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ContatoComponent } from './contato/contato.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ContatoDataService } from './services/contato-data.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ContatoDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
